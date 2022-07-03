@@ -91,13 +91,13 @@ class Viewer {
             this.isClick = true;
             if (this.isClick) {
                 if (this.isHit('TouchHead', event.offsetX, event.offsetY)) {
-                    this.startAnimation("happy1", "base");
+                    this.startAnimation("happy1", "happy2");
                 } else if (this.isHit('TouchSpecial', event.offsetX, event.offsetY)) {
-                    this.startAnimation("angry1", "base");
+                    this.startAnimation("angry1", "happy2");
                 } else {
-                    const bodyMotions = ["normal1", "normal2", "normal3"];
+                    const bodyMotions = ["normal1", "normal2", "normal3", "agree1", "angry1", "deny1", "greeat1", "think1"];
                     let currentMotion = bodyMotions[Math.floor(Math.random() * bodyMotions.length)];
-                    this.startAnimation(currentMotion, "base");
+                    this.startAnimation(currentMotion, "happy2");
                 }
             }
 
@@ -112,12 +112,13 @@ class Viewer {
 
         model.motions.forEach((value, key) => {
             if (key != "effect") {
+                happ
                 let btn = document.createElement("button");
                 let label = document.createTextNode(key);
                 btn.appendChild(label);
                 btn.className = "btnGenericText";
                 btn.addEventListener("click", () => {
-                    this.startAnimation(key, "base");
+                    this.startAnimation(key, "happy2");
                 });
             }
         });
@@ -137,8 +138,8 @@ class Viewer {
         let deltaTime = 0.016 * delta;
 
         if (!this.animator.isPlaying) {
-            let m = this.motions.get("idle");
-            this.animator.getLayer("base").play(m);
+            let m = this.motions.get("happy3");
+            this.animator.getLayer("happy3").play(m);
         }
         this._animator.updateAndEvaluate(deltaTime);
 
